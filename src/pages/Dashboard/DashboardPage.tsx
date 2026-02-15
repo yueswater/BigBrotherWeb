@@ -34,6 +34,18 @@ export default function DashboardPage() {
         },
     })
 
+    const handleGlobalToggle = () => {
+        const isRunning = tokens.some(t => t.status === 'active')
+        const action = isRunning ? 'stop' : 'start'
+
+        tokens.forEach(token => {
+            if ((action === 'stop' && token.status === 'active') ||
+                (action === 'start' && token.status !== 'active')) {
+                toggleAgent({ id: token.id, action })
+            }
+        })
+    }
+
     if (isTokensLoading) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-transparent">
@@ -56,11 +68,15 @@ export default function DashboardPage() {
                             <h1 className="text-3xl font-bold text-base-content tracking-tight">BigBrother Dashboard</h1>
                             <p className="text-secondary text-sm">Real-time AI Token Consumption & Agent Monitoring</p>
                         </div>
-                        <Card className="p-4 bg-transparent shadow-sm border border-base-300">
-                            <Stack direction="row" gap="md" align="center">
+                        <Card className="p-2 bg-transparent rounded-full">
+                            <Stack direction="row" gap="md" align="center" className="px-2">
                                 <MonitorStatus status={activeCount > 0 ? 'running' : 'stopped'} />
-                                <div className="divider divider-horizontal mx-0 opacity-50"></div>
-                                <MonitorToggle running={activeCount > 0} loading={isActionPending} />
+                                <div className="h-8 w-px bg-base-300 mx-2"></div>
+                                <MonitorToggle
+                                    running={activeCount > 0}
+                                    loading={isActionPending}
+                                    onToggle={handleGlobalToggle}
+                                />
                             </Stack>
                         </Card>
                     </header>

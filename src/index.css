@@ -23,7 +23,7 @@
   --color-info: #3498db;
   --color-info-content: #ECF0F1;
 
-  --color-success: #2ecc71;
+  --color-success: #00d390;
   --color-success-content: #ECF0F1;
 
   --color-warning: #f39c12;
@@ -33,7 +33,24 @@
   --color-error-content: #ECF0F1;
 }
 
+[data-theme='dark'] {
+  --color-base-100: #1a1c1e;
+  --color-base-200: #25282c;
+  --color-base-300: #3b3f46;
+  --color-base-content: #f8f9fa;
+
+  --color-primary: #5a5a5a;
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #95a5a6;
+  --color-secondary-content: #1a1c1e;
+
+  --color-neutral: #2c3e50;
+  --color-neutral-content: #ffffff;
+}
+
 html {
   background-color: var(--color-base-100);
   color: var(--color-base-content);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

@@ -13,18 +13,21 @@ export interface SidebarProps {
     items: SidebarItem[]
     className?: string
     defaultCollapsed?: boolean
+    backgroundColor?: string
 }
 
 export default function Sidebar({
     items,
     className = '',
-    defaultCollapsed = false
+    defaultCollapsed = false,
+    backgroundColor
 }: SidebarProps) {
     const location = useLocation()
     const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed)
 
     return (
         <aside
+            style={{ backgroundColor }}
             className={`
                 relative h-full border-r border-base-300 bg-base-100 flex flex-col transition-all duration-300 ease-in-out
                 ${isCollapsed ? 'w-20' : 'w-64'}
@@ -33,6 +36,7 @@ export default function Sidebar({
         >
             <button
                 onClick={() => setIsCollapsed(!isCollapsed)}
+                style={{ backgroundColor }}
                 className="absolute -right-3 top-10 w-6 h-6 bg-base-100 border border-base-300 rounded-full flex items-center justify-center hover:bg-base-200 z-10"
             >
                 {isCollapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}

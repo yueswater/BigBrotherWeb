@@ -93,7 +93,11 @@ export default function AppLayout({
 
             <div className="flex flex-1 overflow-hidden relative">
                 {showSidebar && (
-                    <Sidebar items={sidebarItems} />
+                    <Sidebar
+                        items={sidebarItems}
+                        backgroundColor="transparent"
+                        className="!bg-transparent"
+                    />
                 )}
 
                 <main className="flex-1 flex flex-col overflow-y-auto bg-base-200">
