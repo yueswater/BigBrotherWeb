@@ -7,6 +7,8 @@ import DashboardPage from '@/pages/Dashboard/DashboardPage'
 import LoginPage from '@/pages/Auth/LoginPage'
 import RegisterPage from '@/pages/Auth/RegisterPage'
 import ProxiesPage from '@/pages/Proxies/ProxiesPage'
+import ProfilePage from '@/pages/Profile'
+import { Features, Pricing, FAQ } from '@/pages'
 import Spinner from '@/components/ui/Spinner'
 import { ToastProvider } from './context/ToastContext'
 
@@ -15,7 +17,7 @@ function AppRoutes() {
 
   if (isLoading) {
     return (
-      <div className="h-screen w-screen flex items-center justify-center">
+      <div className="h-screen w-screen flex items-center justify-center bg-transparent">
         <Spinner size="lg" />
       </div>
     )
@@ -25,22 +27,33 @@ function AppRoutes() {
     <AppLayout isAuthenticated={isAuthenticated}>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/faq" element={<FAQ />} />
+
         <Route
           path="/login"
-          element={isAuthenticated ? <Navigate to="/dashboard" /> : <LoginPage />}
+          element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <LoginPage />}
         />
         <Route
           path="/register"
-          element={isAuthenticated ? <Navigate to="/dashboard" /> : <RegisterPage />}
+          element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <RegisterPage />}
         />
+
         <Route
           path="/dashboard"
-          element={isAuthenticated ? <DashboardPage /> : <Navigate to="/login" />}
+          element={isAuthenticated ? <DashboardPage /> : <Navigate to="/login" replace />}
         />
         <Route
           path="/proxies"
-          element={isAuthenticated ? <ProxiesPage /> : <Navigate to="/login" />}
+          element={isAuthenticated ? <ProxiesPage /> : <Navigate to="/login" replace />}
         />
+        <Route
+          path="/profile"
+          element={isAuthenticated ? <ProfilePage /> : <Navigate to="/login" replace />}
+        />
+
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AppLayout>
   )

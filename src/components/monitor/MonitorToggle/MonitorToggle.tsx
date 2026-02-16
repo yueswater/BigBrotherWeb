@@ -18,7 +18,7 @@ export default function MonitorToggle({
             size="lg"
             disabled={loading}
             onClick={onToggle}
-            className="rounded-full px-8 font-bold flex items-center gap-2"
+            className=" px-8 font-bold flex items-center gap-2"
         >
             {loading && <Spinner size="sm" />}
             {running ? 'Stop Monitoring' : 'Start Monitoring'}

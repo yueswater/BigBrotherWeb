@@ -7,6 +7,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['"Pixelify Sans"', 'system-ui', 'sans-serif'],
+        pixel: ['"Pixelify Sans"', 'sans-serif'],
+      },
       colors: {
         base: {
           100: "var(--color-base-100)",

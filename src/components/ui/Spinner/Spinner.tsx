@@ -22,7 +22,7 @@ export default function Spinner({
 
     return (
         <span
-            className={`inline-block border-bb-primary border-t-transparent border-solid rounded-full animate-spin ${sizeClass}`}
+            className={`inline-block border-bb-primary border-t-transparent border-solid  animate-spin ${sizeClass}`}
         />
     )
 }

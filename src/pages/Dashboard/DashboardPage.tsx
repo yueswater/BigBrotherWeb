@@ -68,7 +68,7 @@ export default function DashboardPage() {
                             <h1 className="text-3xl font-bold text-base-content tracking-tight">BigBrother Dashboard</h1>
                             <p className="text-secondary text-sm">Real-time AI Token Consumption & Agent Monitoring</p>
                         </div>
-                        <Card className="p-2 bg-transparent rounded-full">
+                        <Card className="p-2 bg-transparent ">
                             <Stack direction="row" gap="md" align="center" className="px-2">
                                 <MonitorStatus status={activeCount > 0 ? 'running' : 'stopped'} />
                                 <div className="h-8 w-px bg-base-300 mx-2"></div>

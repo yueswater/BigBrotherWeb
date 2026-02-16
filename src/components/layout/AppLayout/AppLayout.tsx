@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { LayoutDashboard, Globe, User, Settings, LogOut } from 'lucide-react'
+import { LayoutDashboard, Globe, User as UserIcon, Settings, LogOut } from 'lucide-react'
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
 import Footer from '../Footer'
@@ -20,13 +20,14 @@ export default function AppLayout({
     username = "Admin"
 }: AppLayoutProps) {
     const location = useLocation()
-    const { logout } = useAuth()
+    const { logout, user } = useAuth()
     const [isProfileOpen, setIsProfileOpen] = useState(false)
 
     const isAuthPage = location.pathname === '/login' || location.pathname === '/register'
     const isHomePage = location.pathname === '/'
-    const isFullWidthPage = isHomePage || isAuthPage
+    const isProfilePage = location.pathname === '/profile'
 
+    const isFullWidthPage = isHomePage || isAuthPage || isProfilePage
     const showSidebar = isAuthenticated && !isFullWidthPage
 
     const sidebarItems = [
@@ -38,10 +39,14 @@ export default function AppLayout({
         { label: 'Dashboard', path: '/dashboard' },
         { label: 'Proxies', path: '/proxies' },
     ] : [
-        { label: '功能', path: '/features' },
-        { label: '價格', path: '/pricing' },
-        { label: '常見問題', path: '/faq' },
+        { label: 'Features', path: '/features' },
+        { label: 'Pricing', path: '/pricing' },
+        { label: 'FAQ', path: '/faq' },
     ]
+
+    const displayUsername = user?.username || username
+    const displayEmail = user?.email || ""
+    const currentAvatarUrl = `https://api.dicebear.com/7.x/pixel-art/svg?seed=${user?.avatar_seed || displayUsername}`
 
     if (isAuthPage) {
         return <>{children}</>
@@ -51,13 +56,13 @@ export default function AppLayout({
         <div className="flex flex-col h-screen bg-base-200 overflow-hidden text-base-content font-sans">
             <Navbar
                 isAuthenticated={isAuthenticated}
-                username={username}
+                username={displayUsername}
                 links={navLinks}
                 onUserClick={() => setIsProfileOpen(true)}
             >
                 {!isAuthenticated ? (
                     <Link to="/login">
-                        <Button variant="primary" className="rounded-xl px-8 font-bold">Login</Button>
+                        <Button variant="primary" className=" px-8 font-bold">Login</Button>
                     </Link>
                 ) : (
                     <Button
@@ -74,12 +79,13 @@ export default function AppLayout({
             <ProfileSidebar
                 isOpen={isProfileOpen}
                 onClose={() => setIsProfileOpen(false)}
-                username={username}
-                email="sungpinyue@gmail.com"
+                username={displayUsername}
+                email={displayEmail}
+                avatarUrl={currentAvatarUrl}
                 title='Profile'
-                backgroundColor="bg-transparent"
+                backgroundColor="transparent"
                 items={[
-                    { label: 'Profile', path: '/profile', icon: User },
+                    { label: 'Profile', path: '/profile', icon: UserIcon },
                     { label: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
                     { label: 'Settings', path: '/settings', icon: Settings },
                 ]}
@@ -104,7 +110,7 @@ export default function AppLayout({
                     <div className="flex-1 w-full min-h-fit">
                         {children}
                     </div>
-                    {isHomePage && <Footer />}
+                    {(isHomePage || isProfilePage) && <Footer />}
                 </main>
             </div>
         </div>

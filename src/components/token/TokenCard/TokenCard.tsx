@@ -48,7 +48,7 @@ export default function TokenCard({
                         {displayPercentage}%
                     </span>
                 </div>
-                <div className="w-full bg-base-300 rounded-full h-2.5 overflow-hidden">
+                <div className="w-full bg-black/20  h-2.5 overflow-hidden">
                     <div
                         className={`h-full transition-all duration-700 ease-out ${isLowBalance ? 'bg-error' : 'bg-primary'}`}
                         style={{ width: `${usagePercentage}%` }}
@@ -61,7 +61,7 @@ export default function TokenCard({
             </div>
 
             <div className="pt-2">
-                <div className="flex justify-between items-center bg-base-200/50 p-2 rounded-lg">
+                <div className="flex justify-between items-center bg-base-200/50 p-2 ">
                     <span className="text-[10px] uppercase text-secondary font-medium">Last Sync</span>
                     <span className="text-xs text-base-content font-mono">
                         {lastUpdated ? new Date(lastUpdated).toLocaleString() : 'Never'}

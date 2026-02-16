@@ -20,7 +20,7 @@ export default function Input({
             )}
 
             <input
-                className={`px-4 py-2 rounded-lg border bg-white text-bb-primary outline-none transition-all
+                className={`px-4 py-2  border bg-white text-bb-primary outline-none transition-all
         border-bb-base-300
         focus:border-bb-primary focus:ring-2 focus:ring-bb-primary/20
         ${error ? 'border-bb-error focus:ring-bb-error/20' : ''}`}

@@ -57,7 +57,7 @@ export default function ProxiesPage() {
                     </header>
 
                     <Card className="bg-base-100/50 border-dashed border-2 flex flex-col items-center py-12 px-4 text-center border-base-300">
-                        <div className="p-4 bg-primary/10 rounded-full mb-4">
+                        <div className="p-4 bg-primary/10  mb-4">
                             <ShieldCheck size={32} className="text-primary" />
                         </div>
                         <h3 className="text-lg font-bold">Secure API Management</h3>

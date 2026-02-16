@@ -44,7 +44,7 @@ export const DashboardView: Story = {
                 </header>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {[1, 2, 3, 4, 5, 6].map((i) => (
-                        <div key={i} className="h-40 bg-base-100 rounded-3xl border border-base-300 flex items-center justify-center shadow-sm text-secondary font-mono">
+                        <div key={i} className="h-40 bg-base-100  border border-base-300 flex items-center justify-center shadow-sm text-secondary font-mono">
                             Widget {i}
                         </div>
                     ))}

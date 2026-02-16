@@ -2,55 +2,106 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-base-100: #ECF0F1;
-  --color-base-200: #dfe6e9;
-  --color-base-300: #b2bec3;
-  --color-base-content: #2C3E50;
-
-  --color-primary: #2C3E50;
-  --color-primary-content: #ECF0F1;
-
-  --color-secondary: #7F8C8D;
-  --color-secondary-content: #ECF0F1;
-
-  --color-accent: #C0392B;
-  --color-accent-content: #ECF0F1;
-
-  --color-neutral: #34495e;
-  --color-neutral-content: #ECF0F1;
-
-  --color-info: #3498db;
-  --color-info-content: #ECF0F1;
-
-  --color-success: #00d390;
-  --color-success-content: #ECF0F1;
-
-  --color-warning: #f39c12;
-  --color-warning-content: #2C3E50;
-
-  --color-error: #C0392B;
-  --color-error-content: #ECF0F1;
+*,
+*::before,
+*::after {
+  font-family: 'Pixelify Sans', sans-serif !important;
 }
 
-[data-theme='dark'] {
-  --color-base-100: #1a1c1e;
-  --color-base-200: #25282c;
-  --color-base-300: #3b3f46;
-  --color-base-content: #f8f9fa;
-
-  --color-primary: #5a5a5a;
-  --color-primary-content: #ffffff;
-
-  --color-secondary: #95a5a6;
-  --color-secondary-content: #1a1c1e;
-
-  --color-neutral: #2c3e50;
-  --color-neutral-content: #ffffff;
-}
-
-html {
+body {
+  font-family: 'Pixelify Sans', sans-serif !important;
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
   background-color: var(--color-base-100);
   color: var(--color-base-content);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+:root {
+  --icon-invert: 0;
+}
+
+[data-theme='seafoam'] {
+  --color-base-100: #f4e9d4;
+  --color-base-200: #d0baa9;
+  --color-base-content: #37364e;
+  --color-primary: #6aae9d;
+  --color-secondary: #b9d4b4;
+  --color-accent: #5b4a68;
+  --icon-invert: 0;
+}
+
+[data-theme='retrotronic'] {
+  --color-base-100: #d1bfb0;
+  --color-base-200: #7a9c96;
+  --color-base-content: #392b35;
+  --color-primary: #bb474f;
+  --color-secondary: #486b7f;
+  --color-accent: #bb474f;
+  --icon-invert: 0;
+}
+
+[data-theme='oil-6'] {
+  --color-base-100: #fbf5ef;
+  --color-base-200: #f2d3ab;
+  --color-base-content: #272744;
+  --color-primary: #494d7e;
+  --color-secondary: #8b6d9c;
+  --color-accent: #c69fa5;
+  --icon-invert: 1;
+}
+
+[data-theme='ink'] {
+  --color-base-100: #eaf0d8;
+  --color-base-200: #96a2b3;
+  --color-base-content: #1f1f29;
+  --color-primary: #413a42;
+  --color-secondary: #596070;
+  --color-accent: #96a2b3;
+  --icon-invert: 1;
+}
+
+[data-theme='hope-diamond'] {
+  --color-base-100: #150e10;
+  --color-base-200: #272739;
+  --color-base-content: #77888c;
+  --color-primary: #4f5a64;
+  --color-secondary: #3b4152;
+  --color-accent: #393849;
+  --icon-invert: 1;
+}
+
+[data-theme='gothic-bit'] {
+  --color-base-100: #0e0e12;
+  --color-base-200: #1a1a24;
+  --color-base-content: #e6e6ec;
+  --color-primary: #535373;
+  --color-secondary: #8080a4;
+  --color-accent: #c1c1d2;
+  --icon-invert: 1;
+}
+
+[data-theme='cloudfrenzy'] {
+  --color-base-100: #61567d;
+  --color-base-200: #8c76be;
+  --color-base-content: #f4c4d4;
+  --color-primary: #af7fc2;
+  --color-secondary: #9085d0;
+  --color-accent: #ea92ab;
+  --icon-invert: 1;
+}
+
+[data-theme='arch'] {
+  --color-base-100: #323348;
+  --color-base-200: #3f4873;
+  --color-base-content: #fdfdff;
+  --color-primary: #fdc5c6;
+  --color-secondary: #9288bd;
+  --color-accent: #d9b7d8;
+  --icon-invert: 1;
+}
+
+.pixel-icon-filter {
+  filter: brightness(0) invert(var(--icon-invert));
 }

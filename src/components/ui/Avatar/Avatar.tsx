@@ -24,11 +24,16 @@ export default function Avatar({
     const initial = fallback ? fallback.charAt(0).toUpperCase() : '?'
 
     return (
-        <div className={`relative inline-flex items-center justify-center overflow-hidden bg-[#94a3b8] rounded-full shrink-0 ${sizeClasses} ${className}`}>
+        <div className={`relative inline-flex items-center justify-center overflow-hidden bg-[#94a3b8] shrink-0 border-2 border-base-content ${sizeClasses} ${className}`}>
             {src ? (
-                <img className="w-full h-full object-cover" src={src} alt={alt} />
+                <img
+                    className="w-full h-full object-cover"
+                    src={src}
+                    alt={alt}
+                    style={{ imageRendering: 'pixelated' }}
+                />
             ) : (
-                <span className="font-bold text-white select-none italic">
+                <span className="font-bold text-white select-none italic font-pixel">
                     {initial}
                 </span>
             )}

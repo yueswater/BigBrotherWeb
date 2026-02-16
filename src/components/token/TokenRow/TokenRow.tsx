@@ -44,7 +44,7 @@ export default function TokenRow({
                             {typeof balance === 'number' ? balance.toLocaleString() : '0'}
                         </span>
                     </div>
-                    <div className="w-full bg-base-300 rounded-full h-1.5 overflow-hidden">
+                    <div className="w-full bg-base-300  h-1.5 overflow-hidden">
                         <div
                             className={`h-full transition-all duration-700 ${isLowBalance ? 'bg-error' : 'bg-primary'}`}
                             style={{ width: `${usagePercentage}%` }}

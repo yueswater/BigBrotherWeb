@@ -15,6 +15,7 @@ export interface ProfileSidebarProps {
     onClose: () => void
     username: string
     email: string
+    avatarUrl?: string
     items: ProfileMenuItem[]
     footerAction: {
         label: string
@@ -31,6 +32,7 @@ export default function ProfileSidebar({
     onClose,
     username,
     email,
+    avatarUrl,
     items,
     footerAction,
     backgroundColor = 'bg-transparent',
@@ -50,52 +52,59 @@ export default function ProfileSidebar({
             />
 
             <aside
-                className={`fixed top-4 right-4 h-[calc(100vh-2rem)] w-80 rounded-[2rem] z-[101] transition-transform duration-500 ease-in-out transform flex flex-col ${backgroundColor} ${isOpen ? 'translate-x-0' : 'translate-x-[120%]'
+                className={`fixed top-4 right-4 h-[calc(100vh-2rem)] w-80 z-[101] transition-transform duration-500 ease-in-out transform flex flex-col ${backgroundColor} ${isOpen ? 'translate-x-0' : 'translate-x-[120%]'
                     }`}
             >
-                <div className="p-8 flex flex-col h-full">
+                <div className="p-8 flex flex-col h-full bg-base-100 border-l-4 border-base-content shadow-2xl">
                     <div className="flex justify-between items-center mb-10">
-                        <h2 className="text-xl font-black text-base-content">{title}</h2>
+                        <h2 className="text-xl font-black text-base-content uppercase tracking-tighter">{title}</h2>
                         <button
                             onClick={onClose}
-                            className="p-1 hover:bg-base-200 rounded-full transition-colors"
+                            className="p-1 hover:bg-base-200 transition-colors border-2 border-transparent active:border-base-content"
                         >
                             <X size={20} />
                         </button>
                     </div>
 
                     <div className="flex flex-col items-center text-center mb-12">
-                        <Avatar fallback={username} size="lg" className="w-24 h-24 mb-4 ring-4 ring-base-200" />
-                        <h3 className="text-lg font-black text-base-content">{username}</h3>
-                        <p className="text-sm text-secondary font-medium">{email}</p>
+                        <div className="w-24 h-24 mb-4 ring-4 ring-base-content/10 p-1 bg-base-200">
+                            <img
+                                src={avatarUrl}
+                                alt={username}
+                                className="w-full h-full object-cover"
+                                style={{ imageRendering: 'pixelated' }}
+                            />
+                        </div>
+                        <h3 className="text-lg font-black text-base-content uppercase tracking-tight">{username}</h3>
+                        <p className="text-sm text-base-content/60 font-medium">{email}</p>
                     </div>
 
-                    <nav className="flex-1">
+                    <nav className="flex-1 overflow-y-auto">
                         <Stack gap="xs">
                             {items.map((item) => (
                                 <Link
                                     key={item.path}
                                     to={item.path}
                                     onClick={onClose}
-                                    className="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-base-100 transition-all text-base-content font-bold group"
+                                    className="flex items-center gap-4 px-4 py-3 hover:bg-primary/10 transition-all text-base-content font-bold group border-2 border-transparent hover:border-primary/30"
                                 >
-                                    <item.icon size={20} className="text-secondary group-hover:text-primary" />
-                                    <span>{item.label}</span>
+                                    <item.icon size={20} className="text-base-content/50 group-hover:text-primary" />
+                                    <span className="uppercase tracking-tight">{item.label}</span>
                                 </Link>
                             ))}
                         </Stack>
                     </nav>
 
-                    <div className="mt-auto pt-6 border-t border-base-100">
+                    <div className="mt-auto pt-6 border-t-4 border-base-content/10">
                         <button
                             onClick={() => {
                                 footerAction.onClick();
                                 onClose();
                             }}
-                            className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-bold transition-all ${footerVariantClasses}`}
+                            className={`w-full flex items-center justify-center gap-2 py-4 font-bold transition-all border-4 border-base-content shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] ${footerVariantClasses}`}
                         >
                             <footerAction.icon size={18} />
-                            <span>{footerAction.label}</span>
+                            <span className="uppercase tracking-tighter">{footerAction.label}</span>
                         </button>
                     </div>
                 </div>

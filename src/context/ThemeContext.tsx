@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 
-type Theme = 'light' | 'dark'
+
+export type Theme = 'seafoam' | 'retrotronic' | 'oil-6' | 'ink' | 'hope-diamond' | 'gothic-bit' | 'cloudfrenzy' | 'arch'
 
 interface ThemeContextType {
     theme: Theme
-    toggleTheme: () => void
+    setTheme: (theme: Theme) => void
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
@@ -12,7 +13,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const [theme, setTheme] = useState<Theme>(() => {
         const saved = localStorage.getItem('theme')
-        return (saved as Theme) || 'light'
+        return (saved as Theme) || 'arch'
     })
 
     useEffect(() => {
@@ -20,12 +21,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         localStorage.setItem('theme', theme)
     }, [theme])
 
-    const toggleTheme = () => {
-        setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
-    }
-
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <ThemeContext.Provider value={{ theme, setTheme }}>
             {children}
         </ThemeContext.Provider>
     )

@@ -57,7 +57,7 @@ export default function Button({
                 ${variantClass}
                 ${sizeClass}
                 ${className}
-                rounded-full
+                
                 font-semibold
                 transition
                 hover:opacity-90
@@ -70,7 +70,7 @@ export default function Button({
             onClick={onClick}
         >
             {loading && (
-                <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"></span>
+                <span className="w-4 h-4 border-2 border-current border-t-transparent  animate-spin"></span>
             )}
             {children}
         </button>
